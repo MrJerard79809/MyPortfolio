@@ -196,3 +196,17 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
+  document.getElementById("secureForm").addEventListener("submit", function (e) {
+    const token = document.querySelector('[name="cf-turnstile-response"]')?.value;
+
+    if (!token) {
+      e.preventDefault();
+      alert("❌ CAPTCHA verification required.");
+      console.error("Turnstile widget is missing or incomplete.");
+      return;
+    }
+
+    setTimeout(() => {
+      location.reload(); 
+    }, 3000); 
+  });
