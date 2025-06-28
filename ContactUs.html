@@ -35,16 +35,28 @@
         <div class="form-container">
             <h1>Contact Us</h1>
             <p>We’d love to hear from you. Please fill out the form below.</p>
-            <form id="contactForm" action="https://formspree.io/f/mnnvbjlv" method="POST">
+          <!--  <form id="contactForm" action="https://formspree.io/f/mnnvbjlv" method="POST">
                 <input type="text" name="name" placeholder="Name" required />
                 <input type="email" name="email" placeholder="Email" required />
                 <textarea name="message" placeholder="Your Message" required></textarea>
 
-         <!--   hCaptcha widget (optional if Formspree already injects it) -->
+            hCaptcha widget (optional if Formspree already injects it) 
                 <div class="h-captcha" data-sitekey="e65ce162-8472-473c-a7f6-6792c8847ba8"></div>
 
                 <button type="submit">Send</button>
-            </form>
+            </form> -->
+
+             <form id="contactForm">
+                  <input type="text" name="name" placeholder="Name" required />
+                  <input type="email" name="email" placeholder="Email" required />
+                  <textarea name="message" placeholder="Your Message" required></textarea>
+
+                  <!-- Cloudflare Turnstile widget -->
+                  <div class="cf-turnstile" data-sitekey="0x4AAAAAABitnD6myhZPiWzD"></div>
+
+                  <button type="submit">Send</button>
+                  <p id="form-status"></p>
+                </form>
 
         </div>
 
@@ -52,7 +64,8 @@
             <p>&copy; Jerard's Portfolio. All rights reserved 2024.</p>
         </footer>
         <script src="javascriptportfolio/functions.js"></script>
-        <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+      <!--  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>   -->
+         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
          <script> 
             function toggleMenu() {

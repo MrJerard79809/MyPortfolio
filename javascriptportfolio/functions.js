@@ -235,78 +235,40 @@ document.getElementById("contactForm").addEventListener("submit", async function
 });
 */
 
-document.getElementById("contactForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
+ document.getElementById("contactForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const status = document.getElementById("form-status");
 
-  const form = e.target;
-  const status = document.getElementById("status");
-  const token = hcaptcha.getResponse();
-
-  if (!token) {
-    status.textContent = "⚠️ Complete the hCaptcha.";
-    return;
-  }
-
-  const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    message: form.message.value,
-    token: token
-  };
-
-  try {
-    const res = await fetch("/.netlify/functions/verifyform", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await res.json();
-    if (res.ok && result.success) {
-      status.textContent = "✅ Message sent!";
-      form.reset();
-      hcaptcha.reset();
-    } else {
-      status.textContent = "❌ " + (result.error || "Submission failed.");
+    const token = document.querySelector('input[name="cf-turnstile-response"]').value;
+    if (!token) {
+      status.textContent = "⚠️ Please complete the Turnstile.";
+      return;
     }
-  } catch (err) {
-    status.textContent = "⚠️ Network error.";
-  }
-});document.getElementById("contactForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
 
-  const form = e.target;
-  const status = document.getElementById("status");
-  const token = hcaptcha.getResponse();
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+      token: token
+    };
 
-  if (!token) {
-    status.textContent = "⚠️ Complete the hCaptcha.";
-    return;
-  }
+    try {
+      const res = await fetch("/.netlify/functions/sendForm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
 
-  const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    message: form.message.value,
-    token: token
-  };
-
-  try {
-    const res = await fetch("/.netlify/functions/verifyform", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await res.json();
-    if (res.ok && result.success) {
-      status.textContent = "✅ Message sent!";
-      form.reset();
-      hcaptcha.reset();
-    } else {
-      status.textContent = "❌ " + (result.error || "Submission failed.");
+      const result = await res.json();
+      if (result.success) {
+        status.textContent = "✅ Message sent!";
+        form.reset();
+        turnstile.reset();
+      } else {
+        status.textContent = "❌ Verification failed.";
+      }
+    } catch (err) {
+      status.textContent = "⚠️ Error submitting form.";
     }
-  } catch (err) {
-    status.textContent = "⚠️ Network error.";
-  }
-});
+  });
