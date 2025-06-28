@@ -1,45 +1,46 @@
 export async function handler(event) {
-  const { name, email, message, token } = JSON.parse(event.body);
+  try {
+    const { name, email, message, token } = JSON.parse(event.body);
 
-  const secretKey = "YOUR_SECRET_KEY"; // from Cloudflare dashboard
+    const secretKey = "YOUR_SECRET_KEY"; // Replace with your Cloudflare Turnstile secret key
 
-  // Verify Turnstile token
-  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      secret: secretKey,
-      response: token,
-    }),
-  });
+    // 1. Verify Turnstile CAPTCHA
+    const captchaRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret: secretKey, response: token }),
+    });
 
-  const verification = await response.json();
+    const captchaData = await captchaRes.json();
+    if (!captchaData.success) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ success: false, error: "CAPTCHA verification failed" }),
+      };
+    }
 
-  if (!verification.success) {
+    // 2. Submit to Formspree
+    const formRes = await fetch("https://formspree.io/f/mnnvbjlv", {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: new URLSearchParams({ name, email, message }),
+    });
+
+    if (!formRes.ok) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ success: false, error: "Formspree submission failed" }),
+      };
+    }
+
     return {
-      statusCode: 400,
-      body: JSON.stringify({ success: false, error: "CAPTCHA failed" }),
+      statusCode: 200,
+      body: JSON.stringify({ success: true }),
     };
-  }
-
-  // Submit to Formspree
-  const formRes = await fetch("https://formspree.io/f/mnnvbjlv", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-    },
-    body: new URLSearchParams({ name, email, message }),
-  });
-
-  if (!formRes.ok) {
+  } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ success: false, error: "Formspree failed" }),
+      body: JSON.stringify({ success: false, error: "Server error" }),
     };
   }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ success: true }),
-  };
 }

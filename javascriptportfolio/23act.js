@@ -1,10 +1,8 @@
-  const form = document.getElementById("contactForm");
-  const status = document.getElementById("status");
-
-  form.addEventListener("submit", async function (e) {
+  document.getElementById("contactForm").addEventListener("submit", async function (e) {
     e.preventDefault();
-
-    const token = document.querySelector('[name="cf-turnstile-response"]').value;
+    const form = e.target;
+    const status = document.getElementById("form-status");
+    const token = turnstile.getResponse(); // get Cloudflare token
 
     if (!token) {
       status.textContent = "⚠️ Please complete the CAPTCHA.";
@@ -15,25 +13,25 @@
       name: form.name.value,
       email: form.email.value,
       message: form.message.value,
-      token: token,
+      token: token
     };
 
     try {
-      const res = await fetch("/.netlify/functions/verify-turnstile", {
+      const res = await fetch("/.netlify/functions/verify-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
 
-      const data = await res.json();
-      if (data.success) {
+      const result = await res.json();
+      if (result.success) {
         status.textContent = "✅ Message sent!";
         form.reset();
-        turnstile.reset(); // optional reset
+        turnstile.reset();
       } else {
-        status.textContent = "❌ CAPTCHA failed.";
+        status.textContent = "❌ " + result.error;
       }
     } catch (err) {
-      status.textContent = "⚠️ Error submitting form.";
+      status.textContent = "⚠️ Network error.";
     }
   });
