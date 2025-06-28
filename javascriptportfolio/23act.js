@@ -1,11 +1,15 @@
+
   document.getElementById("contactForm").addEventListener("submit", async function (e) {
     e.preventDefault();
     const form = e.target;
     const status = document.getElementById("form-status");
-    const token = turnstile.getResponse(); // get Cloudflare token
+
+    // Get Cloudflare Turnstile token
+    const token = turnstile.getResponse();
 
     if (!token) {
       status.textContent = "⚠️ Please complete the CAPTCHA.";
+      status.style.color = "orange";
       return;
     }
 
@@ -17,21 +21,27 @@
     };
 
     try {
-      const res = await fetch("/.netlify/functions/verify-form", {
+      const response = await fetch("/.netlify/functions/sendform", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      const result = await res.json();
+      const result = await response.json();
+
       if (result.success) {
         status.textContent = "✅ Message sent!";
+        status.style.color = "limegreen";
         form.reset();
         turnstile.reset();
       } else {
         status.textContent = "❌ " + result.error;
+        status.style.color = "red";
       }
     } catch (err) {
       status.textContent = "⚠️ Network error.";
+      status.style.color = "orange";
     }
   });
