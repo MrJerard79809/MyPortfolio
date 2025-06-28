@@ -196,17 +196,17 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-  document.getElementById("secureForm").addEventListener("submit", function (e) {
-    const token = document.querySelector('[name="cf-turnstile-response"]')?.value;
+   document.getElementById("secureForm").addEventListener("submit", function (e) {
+    const recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]')?.value;
 
-    if (!token) {
+    if (!recaptchaResponse || recaptchaResponse.trim() === "") {
       e.preventDefault();
-      alert("❌ CAPTCHA verification required.");
-      console.error("Turnstile widget is missing or incomplete.");
+      alert("❌ Please complete the CAPTCHA.");
+      console.error("⚠️ reCAPTCHA widget is missing or incomplete.");
       return;
     }
 
     setTimeout(() => {
-      location.reload(); 
-    }, 3000); 
+      location.reload();
+    }, 3000);
   });
