@@ -210,3 +210,21 @@ document.addEventListener('DOMContentLoaded', function() {
       location.reload();
     }, 3000);
   });
+
+  
+  function showImage(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modalImg.src = src;
+    modal.style.display = 'flex';
+  }
+
+  function closeImage() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    document.getElementById('modalImage').src = '';
+  }
+
+  function toggleMenu() {
+    document.getElementById('menu').classList.toggle('active');
+  }
