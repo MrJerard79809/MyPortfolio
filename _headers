@@ -1,16 +1,20 @@
 /*
+  Access-Control-Allow-Origin: *
   X-Frame-Options: SAMEORIGIN
-  X-XSS-Protection: 1; mode=block
+  X-XSS-Protection: 0
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cache-Control: public, max-age=0, must-revalidate
   Content-Security-Policy:
     default-src 'self';
-    img-src 'self' data: https:;
-    script-src 'self' https://www.chatbase.co https://www.google.com https://www.gstatic.com https://formcarry.com https://zapier.com;
-    style-src 'self' https://fonts.googleapis.com;
+    script-src 'self' https://cdnjs.cloudflare.com https://www.chatbase.co https://www.google.com https://www.gstatic.com https://formcarry.com https://zapier.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
-    connect-src 'self' https://www.chatbase.co https://formcarry.com https://hooks.zapier.com;
-    frame-src https://www.chatbase.co https://www.google.com https://www.recaptcha.net https://www.youtube.com;
-*/
+    img-src 'self' data: https:;
+    frame-src https://www.chatbase.co https://www.google.com https://www.recaptcha.net https://www.youtube.com https://drive.google.com https://docs.google.com;
+    frame-ancestors 'self';
+    connect-src 'self' https://formcarry.com https://hooks.zapier.com https://www.chatbase.co;
+    base-uri 'self';
+    form-action 'self';

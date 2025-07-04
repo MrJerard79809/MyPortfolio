@@ -116,6 +116,75 @@ h1 {
   color: #ffffff;
 }
 
+/* === Certificates Section Styling === */
+#certificates {
+  margin: 130px auto 3rem;
+  max-width: 1000px;
+  padding: 0 1rem;
+}
+
+/* Certificate Section Container */
+.section-certificate {
+  background-color: #191b1f; /* same as project section */
+  padding: 2rem 1rem;
+}
+
+/* Certificate Wrapper */
+.certificate-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Individual Certificate Box */
+.certificate-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  border: 1px solid #5fc58d;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgb(0, 0, 0);
+  max-width: 600px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.certificate-item:hover {
+  box-shadow: 0 4px 12px rgb(4, 255, 129);
+}
+
+.certificate-item img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #5fc58d;
+  transition: transform 0.2s;
+}
+
+.certificate-item:hover img {
+  transform: scale(1.03);
+}
+
+.certificate-info {
+  padding: 1rem;
+  color: #ffffff;
+  text-align: left;
+}
+
+.certificate-info h3 {
+  margin: 0.2rem 0;
+  color: rgb(0, 255, 128);
+  font-size: 1.3rem;
+}
+
+.certificate-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+
 /* Gallery Section */
 .gallery {
   display: grid;
@@ -203,6 +272,39 @@ h1 {
 .close-button:hover {
   background-color: #ff0000;
 }
+
+
+/* Scroll To Top Button */
+.ScrTop button {
+  position: fixed;
+  background-color: #03ff74;
+  border: none;
+  cursor: pointer;
+  font-size: 0;
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
+  bottom: 10%;
+  right: 5%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s ease;
+}
+
+.ScrTop button:hover {
+  width: 175px;
+  font-size: 20px;
+}
+
+.ScrTop .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
@@ -381,11 +483,24 @@ body {
   padding: 15px 20px;
   width: 100%;
   border-top: 3px solid orange;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 998;
   font-size: 14px;
+  /* Removed fixed positioning */
+}
+
+.footer-links {
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: rgb(0, 255, 128); /* Neon green */
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-links a:hover {
+  color: #ffffff; /* Hover to white */
 }
 
 /* Optional: smooth scrolling and scrollbar */
@@ -478,5 +593,7 @@ html {
     display: none !important; /* hide desktop menu on small screens if present */
   }
 }
+
+
 
 

@@ -1,3 +1,30 @@
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base HTML and Body */
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #000000, #0e0f0f);
+  color: #ffffff;
+  scroll-behavior: smooth;
+}
+
+/* Structure */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content container (required for dynamic footer) */
+main {
+  flex: 1;
+}
 
 /* Loader styles */
 .loader-container {
@@ -6,7 +33,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,58 +41,39 @@
 }
 
 .loader {
-  display: block;
   position: relative;
-  height: 32px;
-  width: 120px;
+  width: 200px;
+  height: 40px;
   background: linear-gradient(#08f53b 4px, transparent 0) no-repeat;
-  background-position: 0 16px;
-  box-sizing: border-box;
+  background-size: 100% 4px;
+  background-position: 0 50%; /* center line vertically */
   overflow: hidden;
+  border-radius: 8px;
 }
 
-.loader:before {
+.loader::before {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: 2px;
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(0);
+  left: -30px;
   background: #FF3D00;
   border: 6px solid #FFF;
-  box-sizing: border-box;
-  animation: ballbns 1.5s linear infinite;
+  border-radius: 50%;
+  animation: ballbns 1.2s linear infinite;
 }
 
 @keyframes ballbns {
   0% {
-    left: 0;
-    transform: translateX(-100%);
+    transform: translateY(-50%) translateX(0);
   }
-
   100% {
-    left: 100%;
-    transform: translateX(0%);
+    transform: translateY(-50%) translateX(230px);
   }
 }
 
-
-
-
-/* Reset and base styles */
-body, h1, h2, h3, p, ul, li {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-   font-family: 'Arial', sans-serif;
-  background: black;
-  background-size: cover;
-  background-attachment: fixed;
-}
 
 /* Logo */
 .logo {
@@ -109,7 +117,8 @@ body {
 }
 
 /* Menu */
-.menu, .menu2 {
+.menu,
+.menu2 {
   list-style: none;
   display: none;
 }
@@ -126,7 +135,8 @@ body {
   display: inline-block;
 }
 
-.menu a, .menu2 a {
+.menu a,
+.menu2 a {
   text-decoration: none;
   color: #fff;
   padding: 1rem;
@@ -134,7 +144,8 @@ body {
   display: block;
 }
 
-.menu a:hover, .menu2 a:hover {
+.menu a:hover,
+.menu2 a:hover {
   background-color: orange;
 }
 
@@ -142,59 +153,37 @@ body {
 .menu-icon {
   display: none;
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: 5px;
-}
-
-/* Footer */
-.footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 15px 20px;
-  width: 100%;
-  border-top: 3px solid orange;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 998;
-  font-size: 14px;
-}
-
-/* Optional: smooth scrolling and scrollbar */
-html {
-  scroll-behavior: smooth;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: thin;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
+  font-size: 2rem;
+  padding: 3px;
+  position: absolute;
+  right: 50px;
+  z-index: 1001;
+  border: 2px solid #00ff15;
+  border-radius: 6px;
   background-color: transparent;
 }
 
-::-webkit-scrollbar-track {
-  background-color: #000;
+.menu-icon:hover {
+  background-color: #00ff1533;
 }
 
-
-/* Base .menu hidden */
+/* Mobile Menu (Dropdown) */
 .menu {
-  list-style: none;
   display: none;
   flex-direction: column;
   position: absolute;
   top: 30px;
-  right: 20px; /* keep the menu aligned with the hamburger icon */
+  right: 20px;
   background-color: #000000ee;
   border: 2px solid orange;
   border-radius: 5px;
   padding: 10px 0;
   z-index: 1000;
   width: 80vw;
+}
+
+.menu.active {
+  display: flex;
 }
 
 .menu li {
@@ -209,35 +198,47 @@ html {
   text-align: center;
 }
 
-.menu a:hover {
-  background-color: orange;
+/* Footer */
+.footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 15px 20px;
+  width: 100%;
+  border-top: 3px solid orange;
+  font-size: 14px;
+  margin-top: auto;
 }
 
-/* Show .menu when active */
-.menu.active {
-  display: flex;
+.footer-links {
+  margin-bottom: 1rem;
 }
 
-/* Hamburger Icon */
-.menu-icon {
-  display: none;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
-  padding: 3px;
-  position: absolute;
-  right: 50px;
-  z-index: 1001;
-  border: 2px solid #00ff15; /* Light green border */
-  border-radius: 6px;         /* Rounded corners */
+.footer-links a {
+  color: rgb(0, 255, 128);
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+/* Optional: smooth scrolling and scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
 
-.menu-icon:hover {
-  background-color: #00ff1533; /* Light green tint on hover */
+::-webkit-scrollbar-track {
+  background-color: #000;
 }
 
-/* Show only on small screens */
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
@@ -248,7 +249,6 @@ html {
   }
 
   .menu2 {
-    display: none !important; /* hide desktop menu on small screens if present */
+    display: none !important;
   }
 }
-
