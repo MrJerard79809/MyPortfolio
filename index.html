@@ -7,78 +7,99 @@
     <link rel="stylesheet" type="text/css" href="portfoliocss/index.css">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>Jerard's Portfolio</title>
-    </head>
-    <body>
-            <div class="loader-container">
-                <span class="loader"></span>
-            </div>
-        <header class="header">
-            <div class="logo">Jerard's <span>Profile</span></div>
-            <nav class="navbar">
-                <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-                    <!-- Menu for mobile viewers-->
-                    <ul class="menu" id="menu">
-                        <a href="./index.html">Home</a>
-                        <a href="./about">About</a>
-                        <a href="./ContactUs.html">Contact Me</a>
-                        <a href="./Portfolio.html">Portfolio</a>
-                        <a href="./Resume Files/Avila Resume.pdf" target="_blank">Curriculum Vitae</a>
-                    </ul>
-                    <!-- Menu for Desktop -->
-                    <ul class="menu2" id="mob./leview">
-                        <a href="./index.html">Home</a>
-                        <a href="./about">About</a>
-                        <a href="./ContactUs.html">Contact Me</a>
-                        <a href="./Portfolio.html">Portfolio</a>
-                        <a href="./Resume.html">Curriculum</a>
-                    </ul>  
-            </nav>
-        </header>
-                
+</head>
+
+<body>
+    <div class="loader-container">
+        <span class="loader"></span>
+    </div>
+
+    <header class="header">
+        <div class="logo">Jerard's <span>Profile</span></div>
+        <nav class="navbar">
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+            <!-- Menu for mobile viewers-->
+            <ul class="menu" id="menu">
+                <a href="./index.html">Home</a>
+                <a href="./about">About</a>
+                <a href="./ContactUs.html">Contact Me</a>
+                <a href="./Portfolio.html">Portfolio</a>
+                <a href="./Resume Files/Avila Resume.pdf" target="_blank">Curriculum Vitae</a>
+            </ul>
+            <!-- Menu for Desktop -->
+            <ul class="menu2" id="mobileview">
+                <a href="./index.html">Home</a>
+                <a href="./about">About</a>
+                <a href="./ContactUs.html">Contact Me</a>
+                <a href="./Portfolio.html">Portfolio</a>
+                <a href="./Resume.html">Curriculum</a>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
         <section id="home" class="section home-content">
-             <div class="image">
+            <div class="image">
                 <img src="images/LogIn.webp" alt="">
             </div>
             <div class="content">
                 <h3>Hi I'm <span>Jerard Marco Avila</span></h3>
                 <h2>Web Designer, Graphics Designer and Network Engineer</h2>
-                <p>I am an IT student with strong curiosity to create 
-                   something new and proper communication skills and likes to 
-                   Learn more about the industry of Information Communication Technology.
+                <p>I am an IT student with strong curiosity to create
+                    something new and proper communication skills and likes to
+                    Learn more about the industry of Information Communication Technology.
                 </p>
             </div>
         </section>
+
         <section class="section aboutcontent" id="about">
             <h1>About Me</h1>
             <img src="images/aboutme.jpg" alt="Jerard Avila">
             <p>
-              I'm a passionate Web and Graphics Designer, and an aspiring Network Engineer. 
-              Currently pursuing a degree in Information Technology, I have a strong drive 
-              for innovation, effective communication skills, and a deep interest in the 
-              evolving world of Information and Communication Technology (ICT).
+                I'm a passionate Web and Graphics Designer, and an aspiring Network Engineer.
+                Currently pursuing a degree in Information Technology, I have a strong drive
+                for innovation, effective communication skills, and a deep interest in the
+                evolving world of Information and Communication Technology (ICT).
             </p>
         </section>
 
+        <section class="section projectcta" id="projects">
+            <h1>Projects</h1>
+            <p>Here are some of the recent projects I've worked on. Explore more in my <a href="./Portfolio.html">portfolio</a>.</p>
+            <div class="project-items">
+                <div class="project-card">
+                    <h2>Personal Portfolio</h2>
+                    <p>A fully responsive personal website showcasing skills, resume, and past work in a modern layout.</p>
+                </div>
+            </div>
+            <a class="cta-btn" href="./Portfolio.html">See More Projects</a>
+        </section>
 
-            <div class="ScrTop">
-                <button id="backToTopBtn">
-                  <img src="images/upward-arrow.png" alt="Back to Top" class="icon">
-                  Back to Top
-                </button>
-              </div>
+        <section class="section contactcta" id="contact">
+            <h1>Contact</h1>
+            <p>If you have any questions, collaborations, or just want to say hello, feel free to reach out!</p>
+            <a class="cta-btn" href="./ContactUs.html">Contact Me</a>
+        </section>
 
-              
-        <footer class="footer">
-             <div class="footer-links">
+        <div class="ScrTop">
+            <button id="backToTopBtn">
+                <img src="images/upward-arrow.png" alt="Back to Top" class="icon">
+                Back to Top
+            </button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
             <a href="./index.html">Home</a>
             <a href="./Portfolio.html">Portfolio</a>
             <a href="./ContactUs.html">Contact Me</a>
-          </div>
-            <p>&copy; Jerard's Portfolio. All rights reserved 2024.</p>
-        </footer>
+        </div>
+        <p>&copy; Jerard's Portfolio. All rights reserved 2024.</p>
+    </footer>
 
-        <script src="javascriptportfolio/functions.js"></script>
-        <script src="javascriptportfolio/chatbase.js"></script>
+    <script src="javascriptportfolio/functions.js"></script>
+    <script src="javascriptportfolio/chatbase.js"></script>
+</body>
 
-    </body>
- </html>
+</html>
