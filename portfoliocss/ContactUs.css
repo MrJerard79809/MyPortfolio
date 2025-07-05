@@ -1,11 +1,11 @@
-/* Loader styles */
+/* === Loader === */
 .loader-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,11 +14,11 @@
 
 .loader {
   position: relative;
-  width: 200px;
   height: 40px;
+  width: 200px;
   background: linear-gradient(#08f53b 4px, transparent 0) no-repeat;
-  background-size: 100% 4px;
   background-position: 0 50%;
+  background-size: 100% 4px;
   overflow: hidden;
   border-radius: 8px;
 }
@@ -47,27 +47,21 @@
 }
 
 /* === Reset === */
-*,
-html,
-body {
+*, html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body,
-h1,
-h2,
-h3,
-p,
-ul,
-li {
+body, h1, h2, h3, p, ul, li {
   box-sizing: inherit;
 }
 
-/* === Base Styles === */
-html, body {
-  height: 100%;
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
 }
 
 body {
@@ -76,6 +70,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  color: #f1f1f1;
+  line-height: 1.6;
 }
 
 main {
@@ -93,28 +89,28 @@ img {
 
 a {
   word-break: break-word;
+  color: #00ff99;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+a:hover {
+  color: #ff9900;
 }
 
-/* === Logo === */
+/* === Header === */
 .logo {
   color: white;
   border: 2px solid orange;
   padding: 5px 15px;
   font-size: 1.2rem;
-  background-color: transparent;
+  background: transparent;
   border-radius: 6px;
   margin-right: 20px;
 }
 
-/* === Header === */
 .header {
-  background-color: #160f0fb7;
+  background: #160f0fb7;
   color: #fff;
   padding: 10px 20px;
   border: 2px solid #00ff15;
@@ -128,11 +124,10 @@ html {
 }
 
 .header.scrolled {
-  background-color: #000000;
+  background: #000;
   border-color: orange;
 }
 
-/* === Navbar === */
 .navbar {
   display: flex;
   justify-content: center;
@@ -175,15 +170,15 @@ html {
 /* === Mobile Menu === */
 .menu-icon {
   display: none;
-  cursor: pointer;
   font-size: 2rem;
-  padding: 2px;
+  color: white;
+  cursor: pointer;
+  padding: 3px;
   position: absolute;
   right: 2px;
   z-index: 1001;
   border: 2px solid #00ff15;
   border-radius: 5px;
-  color: white;
 }
 
 .menu-icon:hover {
@@ -234,10 +229,7 @@ html {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
   color: #fff;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 2rem auto;
 }
 
 .form-container h1 {
@@ -274,6 +266,7 @@ form textarea:focus {
   outline: none;
 }
 
+/* === CAPTCHA === */
 .captcha-wrapper {
   display: flex;
   justify-content: center;
@@ -283,15 +276,19 @@ form textarea:focus {
   padding: 10px;
   border-radius: 10px;
   flex-wrap: wrap;
-  max-width: 240px;
+  min-height: 78px;
+  min-width: 304px;
+  max-width: 100%;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
 .captcha-wrapper .g-recaptcha {
-  transform: scale(0.85);
-  transform-origin: 0 0;
+  transform: scale(1);
+  transform-origin: center;
 }
 
+/* === Button === */
 button {
   width: 100%;
   padding: 16px;
@@ -314,7 +311,6 @@ button:hover {
   color: #fff;
   text-align: center;
   padding: 15px 20px;
-  width: 100%;
   border-top: 3px solid orange;
   font-size: 14px;
   margin-top: auto;
@@ -325,15 +321,25 @@ button:hover {
 }
 
 .footer-links a {
-  color: rgb(0, 255, 128);
-  text-decoration: none;
+  color: #00ff80;
   margin: 0 1rem;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
 
 .footer-links a:hover {
-  color: #ffffff;
+  color: white;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: #000;
 }
 
 /* === Responsive === */
@@ -361,28 +367,22 @@ button:hover {
 
   .form-container {
     width: 92%;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .captcha-wrapper .g-recaptcha {
-    transform: scale(0.8);
-    transform-origin: 0 0;
+  .captcha-wrapper {
+    transform: scale(0.9);
+    transform-origin: top center;
   }
 }
 
 @media (max-width: 400px) {
-  .captcha-wrapper .g-recaptcha {
-    transform: scale(0.75);
-    transform-origin: 0 0;
+  .captcha-wrapper {
+    transform: scale(0.85);
+    transform-origin: top center;
   }
 
-  .captcha-wrapper {
-    gap: 1rem;
-    max-width: 200px;
-    padding: 8px;
-    margin: 1rem auto;
-    flex-direction: column;
+  .captcha-wrapper .g-recaptcha {
+    transform: scale(1); /* leave it alone, container handles scaling */
   }
 
   .form-container h1 {
