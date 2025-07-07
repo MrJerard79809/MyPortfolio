@@ -102,7 +102,6 @@ h1 {
   flex: 1;
   color: #ffffff;
   text-align: left;
-  padding: 1rem;
 }
 
 .project-info h2 {
@@ -161,16 +160,15 @@ h1 {
   padding: 2rem 1rem;
 }
 
-/* Certificate Wrapper */
 .certificate-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
 
-/* Individual Certificate Box */
 .certificate-item {
   display: flex;
   flex-direction: column;
@@ -178,7 +176,8 @@ h1 {
   border: 1px solid #5fc58d;
   border-radius: 10px;
   box-shadow: 0 1px 4px rgb(0, 0, 0);
-  max-width: 600px;
+  max-width: 400px;  /* 🟢 Smaller so two fit in 1000px */
+  width: 100%;
   overflow: hidden;
   transition: box-shadow 0.3s ease-in-out;
 }
@@ -189,7 +188,8 @@ h1 {
 
 .certificate-item img {
   width: 100%;
-  height: auto;
+  height: 300px;             /* Set a fixed height */
+  object-fit: cover;         /* Crop image to fit while maintaining aspect */
   border-bottom: 1px solid #5fc58d;
   transition: transform 0.2s;
 }
@@ -215,6 +215,7 @@ h1 {
   line-height: 1.6;
   color: #ffffff;
 }
+
 
 
 /* Gallery Section */
@@ -334,6 +335,8 @@ h1 {
   height: 20px;
   margin-right: 5px;
 }
+
+
 
 
 /* Responsive Styles */

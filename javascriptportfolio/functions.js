@@ -88,3 +88,4 @@ function closeImage() {
         modalImg.src = '';
     }
 }
+
