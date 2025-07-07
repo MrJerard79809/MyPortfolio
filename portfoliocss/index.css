@@ -446,6 +446,10 @@ a:hover { color: #ff9900; }
   background-color: #ff0000;
 }
 
+#floatingVideo {
+  display: none;
+}
+
 /* === Footer === */
 .footer {
   background: #333;
