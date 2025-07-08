@@ -102,6 +102,7 @@ h1 {
   flex: 1;
   color: #ffffff;
   text-align: left;
+  padding: 1rem;
 }
 
 .project-info h2 {
