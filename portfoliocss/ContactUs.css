@@ -10,6 +10,12 @@
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loader-container.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .loader {
@@ -30,7 +36,7 @@
   height: 28px;
   top: 50%;
   transform: translateY(-50%) translateX(0);
-  left: -30px;
+  left: -14px;
   background: #FF3D00;
   border: 6px solid #FFF;
   border-radius: 50%;
@@ -42,7 +48,7 @@
     transform: translateY(-50%) translateX(0);
   }
   100% {
-    transform: translateY(-50%) translateX(230px);
+    transform: translateY(-50%) translateX(200px);
   }
 }
 
@@ -60,7 +66,6 @@ body, h1, h2, h3, p, ul, li {
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
-  scrollbar-color: transparent transparent;
   scrollbar-width: thin;
 }
 
@@ -175,7 +180,7 @@ a:hover {
   cursor: pointer;
   padding: 3px;
   position: absolute;
-  right: 2px;
+  right: 20px;
   z-index: 1001;
   border: 2px solid #00ff15;
   border-radius: 5px;
@@ -189,8 +194,8 @@ a:hover {
   display: none;
   flex-direction: column;
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 32.5px;
+  right: 15px;
   background-color: #000000ee;
   border: 2px solid orange;
   border-radius: 5px;
@@ -221,11 +226,11 @@ a:hover {
 /* === Form Container === */
 .form-container {
   background-color: #000;
-  border: 3.5px solid lawngreen;
+  border: 3.5px solid #00ff99;
   border-radius: 16px;
   padding: 25px 20px;
   width: 100%;
-  max-width: 80%;
+  max-width: 600px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   text-align: center;
   color: #fff;
@@ -235,12 +240,21 @@ a:hover {
 .form-container h1 {
   margin-bottom: 10px;
   font-size: 32px;
+  color: #00ff99;
 }
 
 .form-container p {
   margin-bottom: 30px;
   font-size: 16px;
   color: #ddd;
+}
+
+form label {
+  display: block;
+  text-align: left;
+  font-size: 14px;
+  color: #00ff99;
+  margin-bottom: 5px;
 }
 
 form input,
@@ -262,7 +276,7 @@ form textarea {
 
 form input:focus,
 form textarea:focus {
-  border-color: #ff0000;
+  border-color: #ff9900;
   outline: none;
 }
 
@@ -276,33 +290,27 @@ form textarea:focus {
   padding: 10px;
   border-radius: 10px;
   flex-wrap: wrap;
-  min-height: 78px;
-  min-width: 304px;
   max-width: 100%;
   box-sizing: border-box;
   overflow: hidden;
 }
 
-.captcha-wrapper .g-recaptcha {
-  transform: scale(1);
-  transform-origin: center;
-}
-
 /* === Button === */
-button {
+form button {
   width: 100%;
   padding: 16px;
   font-size: 18px;
-  background-color: #ff0000;
-  color: #ffffff;
+  background-color: #00ff99;
+  color: #000;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-button:hover {
-  background-color: #cc0000;
+form button:hover {
+  background-color: #ff9900;
+  color: #fff;
 }
 
 /* === Footer === */
@@ -336,7 +344,8 @@ button:hover {
   width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: transparent;
+  background: #00ff99;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-track {
   background: #000;
@@ -357,8 +366,8 @@ button:hover {
   }
 
   .menu {
-    right: -20px;
-    top: 27.5px;
+    right: 15px;
+    top: 32.5px;
   }
 
   main {
@@ -366,30 +375,26 @@ button:hover {
   }
 
   .form-container {
-    width: 92%;
+    width: 90%;
   }
 
   .captcha-wrapper {
     transform: scale(0.9);
-    transform-origin: top center;
+    transform-origin: center;
   }
 }
 
 @media (max-width: 400px) {
   .captcha-wrapper {
-    transform: scale(0.85);
-    transform-origin: top center;
-  }
-
-  .captcha-wrapper .g-recaptcha {
-    transform: scale(1); /* leave it alone, container handles scaling */
+    transform: scale(0.77);
+    transform-origin: center;
   }
 
   .form-container h1 {
     font-size: 26px;
   }
 
-  button {
+  form button {
     font-size: 16px;
   }
 }
