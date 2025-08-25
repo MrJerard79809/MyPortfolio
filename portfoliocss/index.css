@@ -51,9 +51,6 @@
   }
 }
 
-
-.content { display: none; }
-
 /* === Base Styles === */
 body, h1, h2, h3, p, ul, li {
   margin: 0;
@@ -229,8 +226,15 @@ a:hover { color: #ff9900; }
 .content h3 {
   font-size: 34px;
   font-weight: 800;
-  color: limegreen;
   margin-bottom: 12px;
+}
+
+.content h3 #typing-text-name {
+  color: orange; /* Set name to orange */
+}
+
+.content h3 #typing-text-job {
+  color: limegreen; /* Set job title to limegreen */
 }
 
 .content h3 span { color: #ff9900; }
@@ -539,7 +543,7 @@ a:hover { color: #ff9900; }
     text-align: center;
   }
 
-  .aboutcontent p{
+  .aboutcontent p {
     font-size: 16px;
     padding: 0;
     margin: 0 auto 1.5rem;

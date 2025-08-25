@@ -45,14 +45,12 @@
         </a>
       </div>
       <div class="content">
-        <h3>Hi I'm <span>Jerard Marco Avila</span></h3>
-        <h2>Web Designer, Graphics Designer and Network Engineer</h2>
+        <h3><span id="typing-text-name"></span><br><span id="typing-text-job"></span></h3>
         <p>
           I am an IT student with strong curiosity to create
           something new and proper communication skills and likes to
           Learn more about the industry of Information Communication Technology.
         </p>
-
         <!-- ✅ Triple Buttons Section -->
         <section class="section triple-buttons">
           <a class="cta-btn" href="#contact">Drop Me a Message</a>
@@ -63,15 +61,15 @@
     </section>
 
     <!-- 🔍 Modal for Fullscreen Image View -->
-      <div id="imageModal">
-        <span class="close-button" onclick="closeImage()">✖</span>
-        <img id="modalImage" src="" alt="Full View">
-      </div>
+    <div id="imageModal">
+      <span class="close-button" onclick="closeImage()">✖</span>
+      <img id="modalImage" src="" alt="Full View">
+    </div>
 
     <section class="section aboutcontent" id="about">
       <h1>About Me</h1>
       <a href="./images/aboutme.jpg" onclick="event.preventDefault(); showImage(this.href);">
-        <img src="images/aboutme.jpg" alt="Jerard Avila" >
+        <img src="images/aboutme.jpg" alt="Jerard Avila">
       </a>
       <p>
         I'm a passionate Web and Graphics Designer, and an aspiring Network Engineer.
@@ -80,11 +78,6 @@
         evolving world of Information and Communication Technology (ICT).
       </p>
     </section>
-    <!-- 🔍 Modal for Fullscreen Image View -->
-      <div id="imageModal">
-        <span class="close-button" onclick="closeImage()">✖</span>
-        <img id="modalImage" src="" alt="Full View">
-      </div>
 
     <section class="section projectcta" id="projects">
       <h1>Projects</h1>
@@ -94,8 +87,7 @@
           <h2>Personal Portfolio</h2>
           <p>A fully responsive personal website showcasing skills, resume, and past work in a modern layout.</p>
         </div>
-      </div>
-       <div class="project-card">
+        <div class="project-card">
           <h2>Money Budget Planner - 3rd Year Project Collaboration</h2>
           <p>A simple and user-friendly budgeting app built in Java using Android Studio, 
              designed for students and individuals to track expenses, manage budgets, and stay 
@@ -130,6 +122,51 @@
   
   <script src="javascriptportfolio/functions.js"></script>
   <script src="javascriptportfolio/chatbase.js"></script>
+<script>
+  const textName = "Hi I'm Jerard Marco Avila";
+  const textJob = "Web Designer, Graphics Designer and Network Engineer";
+  let indexName = 0;
+  let indexJob = 0;
+
+  const typingElementName = document.getElementById("typing-text-name");
+  const typingElementJob = document.getElementById("typing-text-job");
+
+  function typeName() {
+    if (indexName < textName.length) {
+      typingElementName.innerHTML += textName.charAt(indexName);
+      indexName++;
+      setTimeout(typeName, 100); // Adjust speed here (milliseconds)
+    } else {
+      // Restart typing the name after a 2-second pause
+      setTimeout(() => {
+        typingElementName.innerHTML = "";
+        indexName = 0;
+        typeName();
+      }, 2000); // 2-second pause before restarting (milliseconds)
+    }
+  }
+
+  function typeJob() {
+    if (indexJob < textJob.length) {
+      typingElementJob.innerHTML += textJob.charAt(indexJob);
+      indexJob++;
+      setTimeout(typeJob, 100); // Adjust speed here (milliseconds)
+    } else {
+      // Restart typing the job title after a 2-second pause
+      setTimeout(() => {
+        typingElementJob.innerHTML = "";
+        indexJob = 0;
+        typeJob();
+      }, 2000); // 2-second pause before restarting (milliseconds)
+    }
+  }
+
+  // Start both typing functions
+  window.onload = () => {
+    typeName();
+    typeJob();
+  };
+</script>
 </body>
 
 </html>
